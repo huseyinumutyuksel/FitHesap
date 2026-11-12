@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+        <!-- Başlık -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Fit Hesap"
+            android:textSize="28sp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ölçülerine göre günlük ihtiyaçlarını hesapla"
+            android:textSize="14sp" />
+        <!-- Kilo ve boy yan yana, ekranı yarı yarıya paylaşıyor -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:orientation="horizontal">
+            <EditText
+                android:id="@+id/edtKilo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="Kilo (kg)"
+                android:inputType="numberDecimal" />
+            <EditText
+                android:id="@+id/edtBoy"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_weight="1"
+                android:hint="Boy (cm)"
+                android:inputType="numberDecimal" />
+        </LinearLayout>
+        <EditText
+            android:id="@+id/edtYas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:hint="Yaş"
+            android:inputType="number" />
+        <!-- Cinsiyet: yalnızca biri seçilebilir -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Cinsiyet"
+            android:textStyle="bold" />
+        <RadioGroup
+            android:id="@+id/rgCinsiyet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/rbKadin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Kadın" />
+            <RadioButton
+                android:id="@+id/rbHelikopter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="Helikopter" />
+
+            <RadioButton
+                android:id="@+id/rbErkek"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_weight="1"
+                android:text="Erkek" />
+        </RadioGroup>
+        <!-- Hareket düzeyi: alt alta üç seçenek -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Günlük hareket düzeyi"
+            android:textStyle="bold" />
+        <RadioGroup
+            android:id="@+id/rgAktivite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <RadioButton
+                android:id="@+id/rbAz"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Az hareketli (masa başı iş)" />
+            <RadioButton
+                android:id="@+id/rbOrta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:text="Orta (haftada 3–5 gün spor)" />
+            <RadioButton
+                android:id="@+id/rbCok"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="Çok hareketli (her gün spor)" />
+        </RadioGroup>
+        <!-- İki buton yan yana, eşit genişlikte -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+            <Button
+                android:id="@+id/btnTemizle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Temizle" />
+            <Button
+                android:id="@+id/btnHesapla"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_weight="1"
+                android:text="Hesapla" />
+        </LinearLayout>
+        <!-- Sonuç kartı: başta gizli, hesaplanınca görünür -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/cardSonuc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:visibility="gone"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="4dp"
+            app:contentPadding="20dp">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Vücut Kitle İndeksi" />
+                <TextView
+                    android:id="@+id/txtVki"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="40sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/txtDurum"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+                <!-- Ayırıcı çizgi: 1dp yüksekliğinde gri bir kutu -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="#DDDDDD" />
+                <TextView
+                    android:id="@+id/txtIdeal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp" />
+                <TextView
+                    android:id="@+id/txtKalori"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textSize="16sp" />
+                <TextView
+                    android:id="@+id/txtSu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </LinearLayout>
+</ScrollView>
